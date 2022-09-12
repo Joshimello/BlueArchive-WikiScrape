@@ -3,7 +3,7 @@ const request = require('request')
 const cheerio = require('cheerio')
 const tabletojson = require('tabletojson').Tabletojson
 
-var outputData = []
+var outputData = {}
 
 const url = 'https://bluearchive.fandom.com/wiki/Student/Detailed_List'
 request(url, (err, res, data) => {
@@ -47,12 +47,14 @@ request(url, (err, res, data) => {
                 'weapon': $($('td[rowspan="2"]')[12]).children().attr('href').split('/revision/')[0]
             }
 
-            outputData.push(charData)
+            outputData[icon_el.attr('title')] = charData
             resolve()
         }))
     })
 
     Promise.all(promises).then(() => {
-        console.log(outputData[2])
+        fs.writeFile('data.json', JSON.stringify(outputData, null,4), () => {
+            console.log('Completed! Data written to data.json')
+        })
     })
 })
