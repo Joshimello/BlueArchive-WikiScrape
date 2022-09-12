@@ -21,7 +21,7 @@ request(url, (err, res, data) => {
 
             let charData = {
                 'name': icon_el.attr('title'),
-                'wiki': icon_el.attr('href'),
+                'wiki': `https://bluearchive.fandom.com${icon_el.attr('href')}`,
                 'icon': (icon_el.children('img').data('src') || icon_el.children('img').attr('src')).split('/revision/')[0],
                 'rank': tableData[0][1],
                 'damage': tableData[0][5],
@@ -39,7 +39,12 @@ request(url, (err, res, data) => {
                 'mhp': tableData[3][2],
                 'matk': tableData[3][7],
                 'mdef': tableData[3][8],
-                'mhl': tableData[3][9]
+                'mhl': tableData[3][9],
+                'item1': $($('td[rowspan="2"]')[4]).children().attr('href').split('/revision/')[0],
+                'item2': $($('td[rowspan="2"]')[5]).children().attr('href').split('/revision/')[0],
+                'item3': $($('td[rowspan="2"]')[6]).children().attr('href').split('/revision/')[0],
+                'cover': $($('td[rowspan="2"]')[11]).children().attr('href').split('/revision/')[0],
+                'weapon': $($('td[rowspan="2"]')[12]).children().attr('href').split('/revision/')[0]
             }
 
             outputData.push(charData)
