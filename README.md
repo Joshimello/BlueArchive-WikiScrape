@@ -4,6 +4,13 @@ Currently, scrapes the [Blue Archive Fandom](https://bluearchive.fandom.com/wiki
 ## Usage
 Just copy the [data.json](https://github.com/Joshimello/bluearchive-wiki-scrape/blob/main/data.json) file to your project and use it however you want.
 
+Example usage:
+```javascript
+const data = JSON.parse(fs.readFileSync('data.json', 'utf8'))
+console.log(data[Takanashi Hoshino (Swimsuit ver.)].profile.hobby)
+// ["Afternoon Nap", "Rumbling"]
+```
+
 ## Dependencies
 **Backend**
 - [node.js](https://github.com/nodejs/node): Main runtime.
