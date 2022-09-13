@@ -12,8 +12,8 @@ Just copy the [data.json](https://github.com/Joshimello/bluearchive-wiki-scrape/
 - [cheerio](https://github.com/cheeriojs/cheerio): Parse html.
 
 ## To-Do
-- Request more data (skins etc).
-- Expand to other wiki sites.
+- Gallery data get
+- Merge skin with main script
 
 ## Contribute
 Always welcomed to improve anything or add suggestions! 
