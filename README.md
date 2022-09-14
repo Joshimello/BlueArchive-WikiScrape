@@ -19,8 +19,7 @@ console.log(data[Takanashi Hoshino (Swimsuit ver.)].profile.hobby)
 - [cheerio](https://github.com/cheeriojs/cheerio): Parse html.
 
 ## To-Do
-- Gallery data get
-- Merge skin with main script
+- nothing so far
 
 ## Contribute
 Always welcomed to improve anything or add suggestions! 

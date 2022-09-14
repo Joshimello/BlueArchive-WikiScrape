@@ -134,9 +134,36 @@ request(domainUrl + suffixUrl, (err, res, listRawData) => {
 	})
 
 	Promise.all(promises).then(() => {
-		fs.writeFile('data.json', JSON.stringify(outputData, null, 4), () => {
-            console.log('Completed! Data written to data.json')
-        })
+
+		promisess = []
+		for (let key in outputData) {
+
+			outputData[key].gallery = {}
+			promisess.push(new Promise(resolve => {
+
+				request(`${outputData[key].wiki}/Gallery`, (err, res, data) => {
+
+					let $ = cheerio.load(data)
+					$('.wikia-gallery-item').children('.lightbox-caption').each((index, el) => {
+						if ($(el).prev('.thumb').find('img').data('src') == undefined) {
+							outputData[key].gallery[$(el).text()] = "NoImage"
+						} 
+
+						else {
+							outputData[key].gallery[$(el).text()] = $(el).prev('.thumb').find('img').data('src').split('/revision/')[0]
+						}
+					})
+
+					resolve()
+				})
+			}))
+		}
+
+		Promise.all(promisess).then(() => {
+			fs.writeFile('data.json', JSON.stringify(outputData, null, 4), () => {
+	            console.log('Completed! Data written to data.json')
+	        })
+		})
 	})
 })
 
